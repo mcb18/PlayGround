@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#05070d">
+  <meta name="description" content="Hold the line against the falling city-killers in a neon vector arcade defense game.">
+  <title>LAST LIGHT // City Defense</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Last Light home"><span class="brand-mark">LL</span><span>LAST<span class="brand-dim">LIGHT</span><small>ORBITAL DEFENSE NETWORK</small></span></a>
+      <div class="status-pill"><i></i> DEFENSE GRID <b>ONLINE</b></div>
+      <button class="sound-toggle" id="soundToggle" aria-label="Toggle sound">♫ <span>SOUND ON</span></button>
+    </header>
+    <section class="game-wrap" aria-label="City defense game">
+      <div class="hud">
+        <div class="hud-block wave-block"><span class="label">SECTOR / WAVE</span><strong id="waveValue">01</strong><span id="phaseText" class="phase-text">STANDBY</span></div>
+        <div class="hud-block score-block"><span class="label">TOTAL SCORE</span><strong id="scoreValue">000000</strong></div>
+        <div class="hud-block credit-block"><span class="label">CREDITS</span><strong><em>¢</em><span id="creditValue">120</span></strong></div>
+        <div class="hud-block emp-block"><span class="label">EMP PULSE</span><strong id="empValue">READY</strong><div class="cooldown-track"><i id="empBar"></i></div></div>
+        <div class="hud-block threat-block"><span class="label">THREATS</span><strong id="threatValue">—</strong></div>
+      </div>
+      <div class="canvas-frame">
+        <canvas id="gameCanvas" aria-label="Neon city defense battlefield" tabindex="0"></canvas>
+        <div class="canvas-vignette"></div>
+        <div class="center-overlay" id="startOverlay">
+          <div class="overlay-card intro-card">
+            <div class="eyebrow"><span></span> EMERGENCY BROADCAST / 07:41:22</div>
+            <h1>THE CITY<br><b>IS THE LAST LIGHT.</b></h1>
+            <p>Incoming signatures have breached the upper atmosphere.<br>You're the only thing between them and home.</p>
+            <button class="primary-button" id="startButton">DEPLOY DEFENSE <span>↗</span></button>
+            <div class="key-hint">MOUSE / TOUCH TO AIM <i>·</i> HOLD FIRE TO LOCK ON</div>
+          </div>
+        </div>
+        <div class="center-overlay hidden" id="shopOverlay">
+          <div class="overlay-card shop-card">
+            <div class="eyebrow"><span></span> SECTOR SECURE / REARMING</div>
+            <h2>PATCH THE GRID<span>.</span></h2>
+            <p class="shop-summary" id="shopSummary">You held the line.</p>
+            <div class="upgrade-grid" id="upgradeGrid"></div>
+            <button class="primary-button" id="nextWaveButton">DEPLOY NEXT WAVE <span>↗</span></button>
+            <div class="key-hint">PRESS ENTER TO CONTINUE <i>·</i> UPGRADES ARE OPTIONAL</div>
+          </div>
+        </div>
+        <div class="center-overlay hidden" id="gameOverOverlay">
+          <div class="overlay-card end-card">
+            <div class="eyebrow danger"><span></span> SIGNAL LOST / CITY FALLEN</div>
+            <h2>LIGHTS OUT<span>.</span></h2>
+            <p id="finalSummary">The grid held as long as it could.</p>
+            <button class="primary-button" id="restartButton">REBOOT DEFENSE <span>↻</span></button>
+          </div>
+        </div>
+        <div class="canvas-tag tag-left"><span class="live-dot"></span> LIVE FEED <b>SECTOR 09</b></div>
+        <div class="canvas-tag tag-right">ALT 12,400 M <b>·</b> 03:17 UTC</div>
+      </div>
+      <div class="city-status" id="cityStatus"></div>
+      <div class="controls-bar">
+        <div class="control"><span class="control-icon laser-icon">⌁</span><span><b>POINT LASER</b><small><kbd>CLICK</kbd> / HOLD <i>·</i> NO AMMO</small></span></div>
+        <div class="control"><span class="control-icon missile-icon">➤</span><span><b>HEAVY ORDNANCE</b><small><kbd>RIGHT CLICK</kbd> <i>·</i> <span id="ammoValue">8</span> LEFT</small></span></div>
+        <div class="control"><span class="control-icon emp-icon">✳</span><span><b>EMERGENCY EMP</b><small><kbd>SPACE</kbd> <i>·</i> 1 PER WAVE</small></span></div>
+        <div class="heat-widget"><span>LASER TEMP</span><div class="heat-track"><i id="heatBar"></i></div><b id="heatValue">0%</b></div>
+      </div>
+      <div class="mobile-controls" aria-label="Touch weapon controls">
+        <button id="mobileLaser" class="mobile-fire laser-mobile">LASER <small>HOLD</small></button>
+        <button id="mobileMissile" class="mobile-fire missile-mobile">MISSILE <small id="mobileAmmo">8 LEFT</small></button>
+        <button id="mobileEmp" class="mobile-fire emp-mobile">EMP <small>1 / WAVE</small></button>
+      </div>
+    </section>
+    <footer><span>LAST LIGHT DEFENSE SYSTEMS <i>© 2089</i></span><span>PROTECT WHAT REMAINS <b>◆</b></span></footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
